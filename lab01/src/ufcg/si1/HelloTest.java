@@ -5,8 +5,9 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 public class HelloTest {
+
 	@Test
-	public void test() {
+	public void testHello() {
 		Assert.assertEquals("Hello, Git!", Hello.xpto());
 	}
 }
