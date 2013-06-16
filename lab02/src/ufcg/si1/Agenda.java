@@ -11,12 +11,13 @@ public class Agenda {
 		this.contatos = new HashSet<Contato>();
 	}
 
-	public void inserirContato(String string, int i) {
-	
+	public void inserirContato(String nome, int numero) {
+		Contato c = new Contato(nome,numero);
+		contatos.add(c);
 	}
 
 	public Object getQtdContatos() {
-		return null;
+		return contatos.size();
 	}
 
 }
