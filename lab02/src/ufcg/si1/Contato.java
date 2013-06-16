@@ -11,13 +11,30 @@ public class Contato {
 	private Set<Telefone> numeros;
 
 	public Contato(String nome, int numero) {
-		this.nome = nome;
 		this.numeros = new HashSet<Telefone>();
+		this.nome = nome;
 		numeros.add(new Telefone(numero));
 	}
 
-	// GETs E SETs
+	public Contato(String nome, int numero, int regiao) {
+		this.numeros = new HashSet<Telefone>();
+		this.nome = nome;
+		numeros.add(new Telefone(numero, regiao));
+	}
 
+	public Contato(String nome, int numero, String operadora) {
+		this.numeros = new HashSet<Telefone>();
+		this.nome = nome;
+		numeros.add(new Telefone(numero, operadora));
+	}
+
+	public Contato(String nome, int numero, int regiao, String operadora) {
+		this.numeros = new HashSet<Telefone>();
+		this.nome = nome;
+		numeros.add(new Telefone(numero, regiao, operadora));
+	}
+
+	// GETs E SETs
 	public String getNome() {
 		return nome;
 	}
@@ -35,7 +52,6 @@ public class Contato {
 	}
 
 	// toString, HashCode e Equals
-
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(this.nome, this.numeros.toString());
@@ -51,7 +67,8 @@ public class Contato {
 		}
 		Contato contato = (Contato) obj;
 		return Objects.equal(this.nome, contato.getNome())
-				&& Objects.equal(this.numeros.toString(), contato.getNumeros().toString());
+				&& Objects.equal(this.numeros.toString(), contato.getNumeros()
+						.toString());
 	}
 
 	@Override
