@@ -14,6 +14,10 @@ public class Contato implements Comparable<Contato> {
 		this.telefones.add(new Telefone(telefone));
 	}
 
+	public int getNumeroDeTelefones() {
+		return telefones.size();
+	}
+
 	public String getNome() {
 		return nome;
 	}
