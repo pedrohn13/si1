@@ -18,15 +18,28 @@
 
 		<p:dataTable id="contatos" var="contato"
 			value="#{agendaBean.contatos}">
-			<p:column headerText="Nome">
+			<p:column headerText="Nome" style="width:25%">
 				<h:outputText value="#{contato.nome}" />
 			</p:column>
-			
-			<p:column headerText="Telefone">
-				<h:outputText value="#{contato.numeroDeTelefones}" />
-			</p:column>
 
+			<p:column headerText="Telefones" style="width:5%">
+				<p:commandButton id="selectButton" update=":form"
+					oncomplete="telefones.show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{contato}"
+						target="#{agendaBean.contatoSelecionado}" />
+				</p:commandButton>
+			</p:column>
 		</p:dataTable>
+
+		<p:dialog header="Números de Telefone" widgetVar="telefones"
+			resizable="false" id="contDet" showEffect="fade" hideEffect="explode"
+			modal="true">
+			<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
+				var="tel" itemType="disc">  
+   				 #{tel.numero}  
+				</p:dataList>
+		</p:dialog>
 	</h:form>
 </h:body>
 </html>

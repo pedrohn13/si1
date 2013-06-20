@@ -12,7 +12,8 @@ public class AgendaBean {
 	
 	Agenda agenda = new Agenda();
 	List<Contato> contatos;
-	
+	Contato contatoSelecionado;	
+
 	public String criarContato() {
 		return "cadastro";
 	}
@@ -24,5 +25,13 @@ public class AgendaBean {
 	public List<Contato> getContatos() {
 		contatos = new ArrayList<Contato>(agenda.getContatos());
 		return contatos;
+	}
+
+	public Contato getContatoSelecionado() {
+		return contatoSelecionado;
+	}
+
+	public void setContatoSelecionado(Contato contatoSelecionado) {
+		this.contatoSelecionado = contatoSelecionado;
 	}
 }

@@ -9,6 +9,7 @@ public class Agenda {
 	
 	public Agenda() {
 		this.contatos = new TreeSet<Contato>();
+		contatos.add(new Contato("Pedro", 33712535));
 	}
 
 	public int getQtdContatos() {

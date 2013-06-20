@@ -6,16 +6,21 @@ import java.util.List;
 public class Contato implements Comparable<Contato> {
 
 	private String nome;
+	private int idade;
+	private String descriscao;
 	private List<Telefone> telefones;
+	private List<String> emails;
 
 	public Contato(String nome, int telefone) {
 		this.nome = nome;
 		this.telefones = new ArrayList<Telefone>();
+		this.emails = new ArrayList<String>();
+		
 		this.telefones.add(new Telefone(telefone));
-	}
-
-	public int getNumeroDeTelefones() {
-		return telefones.size();
+		this.telefones.add(new Telefone(1321313));
+		this.telefones.add(new Telefone(45645645));
+		this.telefones.add(new Telefone(78978978));
+		this.telefones.add(new Telefone(345789879));
 	}
 
 	public String getNome() {
@@ -32,6 +37,30 @@ public class Contato implements Comparable<Contato> {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public String getDescriscao() {
+		return descriscao;
+	}
+
+	public void setDescriscao(String descriscao) {
+		this.descriscao = descriscao;
+	}
+
+	public List<Telefone> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<Telefone> emails) {
+		this.emails = emails;
 	}
 
 	@Override
