@@ -1,10 +1,15 @@
 package sistema;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Agenda {
 
-	private Set<Contato> contatos;
+	Set<Contato> contatos;
+	
+	public Agenda() {
+		this.contatos = new TreeSet<Contato>();
+	}
 
 	public int getQtdContatos() {
 		return contatos.size();
@@ -14,13 +19,11 @@ public class Agenda {
 		contatos.add(new Contato(nome, telefone));
 	}
 
-	public void inserirContato(String nome, int telefone, int regiao) {
-		contatos.add(new Contato(nome, telefone));
-		
+	public Set<Contato> getContatos() {
+		return contatos;
 	}
 
-	public void inserirContato(String nome, int telefone, int regiao,
-			String operadora) {
-		contatos.add(new Contato(nome, telefone));		
+	public void setContatos(Set<Contato> contatos) {
+		this.contatos = contatos;
 	}
 }
