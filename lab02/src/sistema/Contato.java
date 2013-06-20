@@ -7,7 +7,7 @@ public class Contato implements Comparable<Contato> {
 
 	private String nome;
 	private int idade;
-	private String descriscao;
+	private String descricao;
 	private List<Telefone> telefones;
 	private List<String> emails;
 
@@ -15,12 +15,17 @@ public class Contato implements Comparable<Contato> {
 		this.nome = nome;
 		this.telefones = new ArrayList<Telefone>();
 		this.emails = new ArrayList<String>();
-		
 		this.telefones.add(new Telefone(telefone));
+
+		//cenário
 		this.telefones.add(new Telefone(1321313));
 		this.telefones.add(new Telefone(45645645));
 		this.telefones.add(new Telefone(78978978));
 		this.telefones.add(new Telefone(345789879));
+		this.emails.add("pedrohn13@gmail.com");
+		this.emails.add("pedropicui@gmail.com");
+		this.idade = 27;
+		this.descricao = "Estudante de Ciência da Computação na Universidade Federal de Campina Grande";
 	}
 
 	public String getNome() {
@@ -47,19 +52,19 @@ public class Contato implements Comparable<Contato> {
 		this.idade = idade;
 	}
 
-	public String getDescriscao() {
-		return descriscao;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescriscao(String descriscao) {
-		this.descriscao = descriscao;
+	public void setDescricao(String descriscao) {
+		this.descricao = descriscao;
 	}
 
-	public List<Telefone> getEmails() {
+	public List<String> getEmails() {
 		return emails;
 	}
 
-	public void setEmails(List<Telefone> emails) {
+	public void setEmails(List<String> emails) {
 		this.emails = emails;
 	}
 

@@ -9,7 +9,12 @@ public class Agenda {
 	
 	public Agenda() {
 		this.contatos = new TreeSet<Contato>();
-		contatos.add(new Contato("Pedro", 33712535));
+		contatos.add(new Contato("Pedro Henriques Neto", 33712535));
+		contatos.add(new Contato("Pedro Henriques", 36894477));
+		contatos.add(new Contato("Pedro Neto", 11111111));
+		contatos.add(new Contato("Henriques Neto", 3342535));
+		contatos.add(new Contato("Henriques", 3294477));
+		contatos.add(new Contato("Neto", 1111155111));
 	}
 
 	public int getQtdContatos() {
