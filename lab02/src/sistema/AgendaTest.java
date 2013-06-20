@@ -37,11 +37,5 @@ public class AgendaTest {
 		Assert.assertEquals(5, agenda.getQtdContatos());
 		agenda.inserirContato("Francisco", 99756644, 83, "Tim");
 		Assert.assertEquals(6, agenda.getQtdContatos());
-
-		agenda.inserirContato("Severino", 33211414, "Fixo");
-		Assert.assertEquals(7, agenda.getQtdContatos());
-		agenda.inserirContato("Severino", 33211414, "Tim");
-		Assert.assertEquals(7, agenda.getQtdContatos());
 	}
-
 }
