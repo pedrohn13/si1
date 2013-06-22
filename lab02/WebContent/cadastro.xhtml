@@ -10,8 +10,62 @@
 	<title>Cadastro de Novo Contato</title>
 </h:head>
 <h:body>
-	<h:form>		
-		<p:commandButton value="Finalizar Cadastro" action="#{agendaBean.finalizaCadastro()}" />
-	</h:form>
+	<p:commandButton value="Finalizar Cadastro"
+		action="#{cadastroBean.finalizaCadastro()}" />
+
+	<p:panelGrid columns="3">
+		<h:form>
+			<p:panelGrid columns="2">
+				<f:facet name="header">  
+	      			Cadastro de Novo Contato 
+	   			 </f:facet>
+
+				<h:outputLabel for="nome" value="Nome: *" />
+				<p:inputText id="nome" value="#{cadastroBean.nome}" required="true"
+					label="Nome">
+					<f:validateLength minimum="2" />
+				</p:inputText>
+
+				<h:outputLabel for="idade" value="Idade: " />
+				<p:inputText id="idade" value="#{cadastroBean.idade}" label="Idade">
+					<f:validateLength minimum="1" />
+				</p:inputText>
+
+				<h:outputLabel for="descricao" value="Descrição: " />
+				<p:inputTextarea id="descricao" rows="6" cols="33"
+					value="#{cadastroBean.descricao}" />
+			</p:panelGrid>
+		</h:form>
+
+		<h:form>
+			<p:panelGrid columns="2">
+				<f:facet name="header">  
+	      			Cadastro de Telefone
+	   			 </f:facet>
+
+				<h:outputLabel for="numero" value="Número: " />
+				<p:inputText id="numero" value="#{cadastroBean.numero}"
+					label="Numero">
+					<f:validateLength minimum="8" />
+				</p:inputText>
+
+				<h:outputLabel for="regiao" value="Região: " />
+				<p:inputText id="regiao" value="#{cadastroBean.regiao}"
+					label="Regiao">
+					<f:validateLength minimum="2" />
+				</p:inputText>
+
+				<p:commandButton value="Adicionar Telefone"
+					action="#{cadastroBean.addTelefone()}" update="telTable" />
+
+				<p:dataTable id="telTable" var="tel"
+					value="#{cadastroBean.telefones}">
+					<p:column headerText="Numeros">
+						<h:outputText value="#{tel.numero}" />
+					</p:column>
+				</p:dataTable>
+			</p:panelGrid>
+		</h:form>
+	</p:panelGrid>
 </h:body>
 </html>

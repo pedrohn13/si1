@@ -1,6 +1,5 @@
 package sistema;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Contato implements Comparable<Contato> {
@@ -11,21 +10,13 @@ public class Contato implements Comparable<Contato> {
 	private List<Telefone> telefones;
 	private List<String> emails;
 
-	public Contato(String nome, int telefone) {
+	public Contato(String nome, int idade, String descricao,
+			List<Telefone> telefones, List<String> emails) {
 		this.nome = nome;
-		this.telefones = new ArrayList<Telefone>();
-		this.emails = new ArrayList<String>();
-		this.telefones.add(new Telefone(telefone));
-
-		//cenário
-		this.telefones.add(new Telefone(1321313));
-		this.telefones.add(new Telefone(45645645));
-		this.telefones.add(new Telefone(78978978));
-		this.telefones.add(new Telefone(345789879));
-		this.emails.add("pedrohn13@gmail.com");
-		this.emails.add("pedropicui@gmail.com");
-		this.idade = 27;
-		this.descricao = "Estudante de Ciência da Computação na Universidade Federal de Campina Grande";
+		this.idade = idade;
+		this.descricao = descricao;
+		this.telefones = telefones;
+		this.emails = emails;
 	}
 
 	public String getNome() {
