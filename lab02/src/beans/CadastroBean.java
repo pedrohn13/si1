@@ -19,9 +19,12 @@ public class CadastroBean {
 	private String descricao;
 	private List<String> emails = new ArrayList<String>();
 	private List<Telefone> telefones = new ArrayList<Telefone>();
+	
 	private int numero;
 	private int regiao;
 	private String operadora;
+	private String email;
+	
 	private Telefone telefoneSelecionado;
 	private String emailSelecionado;
 
@@ -34,7 +37,15 @@ public class CadastroBean {
 	}
 
 	public void addTelefone() {
-		telefones.add(new Telefone(numero));
+		telefones.add(new Telefone(numero,regiao,operadora));
+		numero = 0;
+		regiao = 0;
+		operadora = "";
+	}
+	
+	public void addEMail() {
+		emails.add(email);
+		this.email = "";
 	}
 
 	public void removeTelefone() {
@@ -132,6 +143,14 @@ public class CadastroBean {
 
 	public void setEmailSelecionado(String emailSelecionado) {
 		this.emailSelecionado = emailSelecionado;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

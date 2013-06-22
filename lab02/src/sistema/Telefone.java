@@ -1,10 +1,16 @@
 package sistema;
 
 public class Telefone {
-	
+
 	private int numero;
 	private int regiao;
 	private String operadora;
+
+	public Telefone(int telefone, int regiao, String operadora) {
+		this.numero = telefone;
+		this.regiao = regiao;
+		this.operadora = operadora;
+	}
 
 	public int getNumero() {
 		return numero;
@@ -12,10 +18,6 @@ public class Telefone {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
-	}
-
-	public Telefone(int telefone) {
-		this.numero = telefone;
 	}
 
 	public int getRegiao() {
@@ -33,6 +35,4 @@ public class Telefone {
 	public void setOperadora(String operadora) {
 		this.operadora = operadora;
 	}
-
-	
 }

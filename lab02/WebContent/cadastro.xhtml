@@ -11,7 +11,8 @@
 </h:head>
 <h:body>
 	<p:commandButton value="Finalizar Cadastro"
-		action="#{cadastroBean.finalizaCadastro()}" />
+		action="#{cadastroBean.finalizaCadastro()}"
+		rendered="#{cadastroBean.telefones.size()>0}" />
 
 	<p:panelGrid columns="3">
 		<h:form>
@@ -55,13 +56,51 @@
 					<f:validateLength minimum="2" />
 				</p:inputText>
 
-				<p:commandButton value="Adicionar Telefone"
-					action="#{cadastroBean.addTelefone()}" update="telTable" />
+				<h:outputText value="Operadora: " />
+				<p:selectOneMenu value="#{cadastroBean.operadora}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="Fixo" itemValue="Fixo" />
+					<f:selectItem itemLabel="Claro" itemValue="Claro" />
+					<f:selectItem itemLabel="Oi" itemValue="Oi" />
+					<f:selectItem itemLabel="Tim" itemValue="Tim" />
+					<f:selectItem itemLabel="Vivo" itemValue="Vivo" />
+				</p:selectOneMenu>
 
-				<p:dataTable id="telTable" var="tel"
-					value="#{cadastroBean.telefones}">
-					<p:column headerText="Numeros">
-						<h:outputText value="#{tel.numero}" />
+				<p:commandButton value="Adicionar"
+					action="#{cadastroBean.addTelefone()}" update="telTable" />
+			</p:panelGrid>
+			<p:dataTable id="telTable" var="tel"
+				value="#{cadastroBean.telefones}">
+				<p:column headerText="Numeros">
+					<h:outputText value="#{tel.numero}" />
+				</p:column>
+
+				<p:column headerText="Região">
+					<h:outputText value="#{tel.regiao}" />
+				</p:column>
+
+				<p:column headerText="Operadora">
+					<h:outputText value="#{tel.operadora}" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+		<h:form>
+			<p:panelGrid columns="2">
+				<f:facet name="header">  
+	      			Cadastro de E-Mails
+	   			 </f:facet>
+
+				<h:outputLabel for="email" value="E-Mail: " />
+				<p:inputText id="email" value="#{cadastroBean.email}" label="Email" />
+
+				<p:commandButton value="Adicionar"
+					action="#{cadastroBean.addEMail()}" update="emailTable" />
+
+				<p:dataTable id="emailTable" var="ema"
+					value="#{cadastroBean.emails}">
+					<p:column headerText="E-Mails">
+						<h:outputText value="#{ema}" />
 					</p:column>
 				</p:dataTable>
 			</p:panelGrid>
