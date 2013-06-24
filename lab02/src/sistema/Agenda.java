@@ -16,7 +16,7 @@ public class Agenda {
 		return contatos.size();
 	}
 
-	public void inserirContato(String nome, int idade, String descricao,
+	public void inserirContato(String nome, String idade, String descricao,
 			List<Telefone> telefones, List<String> emails) {
 		contatos.add(new Contato(nome, idade, descricao, telefones, emails));
 	}

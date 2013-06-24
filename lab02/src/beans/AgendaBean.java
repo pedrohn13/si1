@@ -14,8 +14,8 @@ import sistema.Contato;
 public class AgendaBean {
 
 	public static Agenda agenda = new Agenda();
+	public static Contato contatoSelecionado;
 	private List<Contato> contatos;
-	private Contato contatoSelecionado;
 
 	public String criarContato() {
 		return "cadastro";
@@ -36,5 +36,14 @@ public class AgendaBean {
 
 	public static Agenda getAgenda() {
 		return agenda;
+	}
+
+	public String voltar() {
+		return "index";
+	}
+
+	public String editar() {
+		EditarBean.reset();
+		return "editar";
 	}
 }

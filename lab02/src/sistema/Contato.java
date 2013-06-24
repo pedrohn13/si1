@@ -5,12 +5,12 @@ import java.util.List;
 public class Contato implements Comparable<Contato> {
 
 	private String nome;
-	private int idade;
+	private String idade;
 	private String descricao;
 	private List<Telefone> telefones;
 	private List<String> emails;
 
-	public Contato(String nome, int idade, String descricao,
+	public Contato(String nome, String idade, String descricao,
 			List<Telefone> telefones, List<String> emails) {
 		this.nome = nome;
 		this.idade = idade;
@@ -35,11 +35,11 @@ public class Contato implements Comparable<Contato> {
 		this.telefones = telefones;
 	}
 
-	public int getIdade() {
+	public String getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
+	public void setIdade(String idade) {
 		this.idade = idade;
 	}
 

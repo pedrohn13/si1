@@ -10,51 +10,45 @@
 	<title>Cadastro de Novo Contato</title>
 </h:head>
 <h:body>
-	<p:commandButton value="Finalizar Cadastro"
-		action="#{cadastroBean.finalizaCadastro()}"
-		rendered="#{cadastroBean.telefones.size()>0}" />
-
-	<p:panelGrid columns="3">
-		<h:form>
-			<p:panelGrid columns="2">
-				<f:facet name="header">  
-	      			Cadastro de Novo Contato 
-	   			 </f:facet>
-
+	<h:form id="form">
+		<h:outputText value="* = Campos Obrigatórios" />
+		<p:panel id="panelNome" header="Cadastro de Novo Contato">
+			<h:panelGrid id="grid1" columns="3">
 				<h:outputLabel for="nome" value="Nome: *" />
-				<p:inputText id="nome" value="#{cadastroBean.nome}" required="true"
-					label="Nome">
+				<p:inputText id="nome" value="#{cadastroBean.nome}" label="Nome"
+					required="true">
 					<f:validateLength minimum="2" />
 				</p:inputText>
+				<p:message for="nome" id="erroNome" />
 
 				<h:outputLabel for="idade" value="Idade: " />
 				<p:inputText id="idade" value="#{cadastroBean.idade}" label="Idade">
-					<f:validateLength minimum="1" />
+					<f:validateLength minimum="1" maximum="3"/>
 				</p:inputText>
+				<p:message for="idade" id="erroIdade"/>
 
 				<h:outputLabel for="descricao" value="Descrição: " />
 				<p:inputTextarea id="descricao" rows="6" cols="33"
 					value="#{cadastroBean.descricao}" />
-			</p:panelGrid>
-		</h:form>
+				<p:message for="descricao" />
+			</h:panelGrid>
+		</p:panel>
 
-		<h:form>
-			<p:panelGrid columns="2">
-				<f:facet name="header">  
-	      			Cadastro de Telefone
-	   			 </f:facet>
-
-				<h:outputLabel for="numero" value="Número: " />
+		<p:panel id="panelTelefone" header="Novo Telefone *">
+			<h:panelGrid columns="3">
+				<h:outputLabel for="numero" value="Número: *" />
 				<p:inputText id="numero" value="#{cadastroBean.numero}"
 					label="Numero">
-					<f:validateLength minimum="8" />
+					<f:validateLength minimum="8" maximum="8" />
 				</p:inputText>
+				<p:message for="numero" id="erroNumero" />
 
 				<h:outputLabel for="regiao" value="Região: " />
 				<p:inputText id="regiao" value="#{cadastroBean.regiao}"
 					label="Regiao">
-					<f:validateLength minimum="2" />
+					<f:validateLength minimum="2" maximum="2" />
 				</p:inputText>
+				<p:message for="regiao" id="erroRegiao" />
 
 				<h:outputText value="Operadora: " />
 				<p:selectOneMenu value="#{cadastroBean.operadora}">
@@ -67,44 +61,61 @@
 				</p:selectOneMenu>
 
 				<p:commandButton value="Adicionar"
-					action="#{cadastroBean.addTelefone()}" update="telTable" />
-			</p:panelGrid>
+					action="#{cadastroBean.addTelefone()}"
+					update="telTable,erroNome,finaliza,erroNumero,erroRegiao,panelTelefone,erroIdade" />
+			</h:panelGrid>
 			<p:dataTable id="telTable" var="tel"
-				value="#{cadastroBean.telefones}">
+				value="#{cadastroBean.telefones}" style="width:50%">
 				<p:column headerText="Numeros">
 					<h:outputText value="#{tel.numero}" />
 				</p:column>
 
-				<p:column headerText="Região">
+				<p:column headerText="Região" style="width:5%">
 					<h:outputText value="#{tel.regiao}" />
 				</p:column>
 
-				<p:column headerText="Operadora">
+				<p:column headerText="Operadora" style="width:5%">
 					<h:outputText value="#{tel.operadora}" />
 				</p:column>
+
+				<p:column headerText="Remover" style="width:5%">
+					<p:commandButton id="removTel" update="telTable,:form:finaliza"
+						action="#{cadastroBean.removeTelefone()}" icon="ui-icon-trash"
+						title="Remover">
+						<f:setPropertyActionListener
+							target="#{cadastroBean.telefoneSelecionado}" value="#{tel}" />
+					</p:commandButton>
+				</p:column>
 			</p:dataTable>
+		</p:panel>
 
-		</h:form>
-		<h:form>
-			<p:panelGrid columns="2">
-				<f:facet name="header">  
-	      			Cadastro de E-Mails
-	   			 </f:facet>
-
-				<h:outputLabel for="email" value="E-Mail: " />
+		<p:panel id="panelEmail" header="Novo E-Mail">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="email" value="E-Mail: *" />
 				<p:inputText id="email" value="#{cadastroBean.email}" label="Email" />
 
 				<p:commandButton value="Adicionar"
-					action="#{cadastroBean.addEMail()}" update="emailTable" />
+					action="#{cadastroBean.addEMail()}"
+					update="emailTable,erroNome,finaliza,panelEmail" />
+			</h:panelGrid>
+			<p:dataTable id="emailTable" var="ema" value="#{cadastroBean.emails}" style="width:50%">
+				<p:column headerText="E-Mails">
+					<h:outputText value="#{ema}" />
+				</p:column>
 
-				<p:dataTable id="emailTable" var="ema"
-					value="#{cadastroBean.emails}">
-					<p:column headerText="E-Mails">
-						<h:outputText value="#{ema}" />
-					</p:column>
-				</p:dataTable>
-			</p:panelGrid>
-		</h:form>
-	</p:panelGrid>
+				<p:column headerText="Remover" style="width:5%">
+					<p:commandButton id="removEma" update="emailTable"
+						action="#{cadastroBean.removeEMail()}" icon="ui-icon-trash"
+						title="Remover">
+						<f:setPropertyActionListener
+							target="#{cadastroBean.emailSelecionado}" value="#{ema}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+		<p:commandButton id="finaliza" value="Finalizar Cadastro"
+			action="#{cadastroBean.finalizaCadastro()}" update="erroNome,erroIdade"
+			disabled="#{cadastroBean.telefones.size()==0}" />
+	</h:form>
 </h:body>
 </html>

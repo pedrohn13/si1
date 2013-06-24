@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Edição de Contato</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<h:outputText value="* = Campos Obrigatórios" />
+		<p:panel id="panelNome" header="Edição de Contato">
+			<h:panelGrid id="grid1" columns="3">
+				<h:outputLabel for="nome" value="Nome: *" />
+				<p:inputText id="nome" value="#{editarBean.nome}" label="Nome"
+					required="true">
+					<f:validateLength minimum="2" />
+				</p:inputText>
+				<p:message for="nome" id="erroNome" />
+
+				<h:outputLabel for="idade" value="Idade: " />
+				<p:inputText id="idade" value="#{editarBean.idade}" label="Idade">
+					<f:validateLength minimum="1" maximum="3" />
+				</p:inputText>
+				<p:message for="idade" id="erroIdade" />
+
+				<h:outputLabel for="descricao" value="Descrição: " />
+				<p:inputTextarea id="descricao" rows="6" cols="33"
+					value="#{editarBean.descricao}" />
+				<p:message for="descricao" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel id="panelTelefone" header="Novo Telefone *">
+			<h:panelGrid columns="3">
+				<h:outputLabel for="numero" value="Número: *" />
+				<p:inputText id="numero" value="#{editarBean.numero}" label="Numero">
+					<f:validateLength minimum="8" maximum="8" />
+				</p:inputText>
+				<p:message for="numero" id="erroNumero" />
+
+				<h:outputLabel for="regiao" value="Região: " />
+				<p:inputText id="regiao" value="#{editarBean.regiao}" label="Regiao">
+					<f:validateLength minimum="2" maximum="2" />
+				</p:inputText>
+				<p:message for="regiao" id="erroRegiao" />
+
+				<h:outputText value="Operadora: " />
+				<p:selectOneMenu value="#{editarBean.operadora}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="Fixo" itemValue="Fixo" />
+					<f:selectItem itemLabel="Claro" itemValue="Claro" />
+					<f:selectItem itemLabel="Oi" itemValue="Oi" />
+					<f:selectItem itemLabel="Tim" itemValue="Tim" />
+					<f:selectItem itemLabel="Vivo" itemValue="Vivo" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="Adicionar"
+					action="#{editarBean.addTelefone()}"
+					update="telTable,erroNome,erroIdade,finaliza,erroNumero,erroRegiao,panelTelefone" />
+			</h:panelGrid>
+			<p:dataTable id="telTable" var="tel" value="#{editarBean.telefones}"
+				style="width:50%">
+				<p:column headerText="Numeros">
+					<h:outputText value="#{tel.numero}" />
+				</p:column>
+
+				<p:column headerText="Região" style="width:5%">
+					<h:outputText value="#{tel.regiao}" />
+				</p:column>
+
+				<p:column headerText="Operadora" style="width:5%">
+					<h:outputText value="#{tel.operadora}" />
+				</p:column>
+
+				<p:column headerText="Remover" style="width:5%">
+					<p:commandButton id="removTel" update="telTable,:form:finaliza"
+						action="#{editarBean.removeTelefone()}" icon="ui-icon-trash"
+						title="Remover">
+						<f:setPropertyActionListener
+							target="#{editarBean.telefoneSelecionado}" value="#{tel}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+		<p:panel id="panelEmail" header="Novo E-Mail">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="email" value="E-Mail: *" />
+				<p:inputText id="email" value="#{editarBean.email}" label="Email" />
+
+				<p:commandButton value="Adicionar" action="#{editarBean.addEMail()}"
+					update="emailTable,erroNome,finaliza,panelEmail" />
+			</h:panelGrid>
+			<p:dataTable id="emailTable" var="ema" value="#{editarBean.emails}"
+				style="width:50%">
+				<p:column headerText="E-Mails">
+					<h:outputText value="#{ema}" />
+				</p:column>
+
+				<p:column headerText="Remover" style="width:5%">
+					<p:commandButton id="removEma" update="emailTable"
+						action="#{editarBean.removeEMail()}" icon="ui-icon-trash"
+						title="Remover">
+						<f:setPropertyActionListener
+							target="#{editarBean.emailSelecionado}" value="#{ema}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+		<p:commandButton id="finaliza" value="Salvar"
+			action="#{editarBean.finalizaEdicao()}" update="erroNome,erroIdade"
+			disabled="#{editarBean.telefones.size()==0}" />
+		<p:commandButton id="cancela" value="Cancelar"
+			action="#{editarBean.cancelar()}" />
+	</h:form>
+</h:body>
+</html>

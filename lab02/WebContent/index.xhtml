@@ -14,54 +14,51 @@
 		<p:commandButton value="Cadastrar Contato"
 			action="#{agendaBean.criarContato()}" />
 
-		<p:growl id="msgs" showDetail="true" />
 
 		<p:dataTable id="contatos" var="contato"
-			value="#{agendaBean.contatos}" style="width:25%">
+			value="#{agendaBean.contatos}" style="width:50%">
 			<p:column headerText="Nome">
 				<h:outputText value="#{contato.nome}" />
 			</p:column>
 
-			<p:column headerText="Idade" style="width:5%">
-				<h:outputText value="#{contato.idade}" />
+			<p:column headerText="N° Telefones" style="width:5%">
+				<h:outputText value="#{contato.telefones.size()}" />
 			</p:column>
 
-			<p:column headerText="Telefones" style="width:5%">
-				<p:commandButton id="selectButton1" update=":form"
-					oncomplete="telefones.show()" icon="ui-icon-search" title="View">
-					<f:setPropertyActionListener value="#{contato}"
-						target="#{agendaBean.contatoSelecionado}" />
-				</p:commandButton>
-			</p:column>
-
-			<p:column headerText="Emails" style="width:5%">
+			<p:column headerText="Detalhes" style="width:5%">
 				<p:commandButton id="selectButton2" update=":form"
-					oncomplete="emails.show()" icon="ui-icon-search" title="View">
+					oncomplete="detalhes.show()" icon="ui-icon-search" title="View">
 					<f:setPropertyActionListener value="#{contato}"
 						target="#{agendaBean.contatoSelecionado}" />
 				</p:commandButton>
-			</p:column>
-
-			<p:column headerText="Descrição" style="width:5%">
-				<h:outputText value="#{contato.descricao}" />
 			</p:column>
 		</p:dataTable>
 
-		<p:dialog header="Números de Telefone" widgetVar="telefones"
-			resizable="false" id="teles" showEffect="fade" hideEffect="fade"
+		<p:dialog header="Detalhes de Contato" widgetVar="detalhes"
+			resizable="true" id="detalhe" showEffect="fade" hideEffect="fade"
 			modal="true">
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome: " />
+				<h:outputText value="#{agendaBean.contatoSelecionado.nome}" />
+				<h:outputText value="Idade: "
+					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+				<h:outputText value="#{agendaBean.contatoSelecionado.idade}"
+					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+				<h:outputText value="Descrição: "
+					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+				<h:outputText value="#{agendaBean.contatoSelecionado.descricao}"
+					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+			</h:panelGrid>
 			<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
 				var="tel" itemType="disc">  
-   				 #{tel.numero}  
-				</p:dataList>
-		</p:dialog>
-
-		<p:dialog header="Emails" widgetVar="emails" resizable="false"
-			id="ems" showEffect="fade" hideEffect="fade" modal="true">
+   				 #{tel}  
+			</p:dataList>
 			<p:dataList value="#{agendaBean.contatoSelecionado.emails}" var="em"
-				itemType="disc">  
+				itemType="disc"
+				rendered="#{agendaBean.contatoSelecionado.emails.size()>0}">  
    				 #{em}  
-				</p:dataList>
+			</p:dataList>
+			<p:commandButton value="Editar" action="#{agendaBean.editar()}" />
 		</p:dialog>
 	</h:form>
 </h:body>

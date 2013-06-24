@@ -7,24 +7,25 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import sistema.Contato;
+import sistema.JaExisteException;
 import sistema.Telefone;
 
 @ManagedBean
 @SessionScoped
 public class CadastroBean {
 
-	Contato contato;
+	private Contato contato;
 	private String nome;
-	private int idade;
+	private String idade;
 	private String descricao;
-	private List<String> emails = new ArrayList<String>();
 	private List<Telefone> telefones = new ArrayList<Telefone>();
-	
-	private int numero;
-	private int regiao;
+	private List<String> emails = new ArrayList<String>();
+
+	private String numero;
+	private String regiao;
 	private String operadora;
 	private String email;
-	
+
 	private Telefone telefoneSelecionado;
 	private String emailSelecionado;
 
@@ -37,29 +38,56 @@ public class CadastroBean {
 	}
 
 	public void addTelefone() {
-		telefones.add(new Telefone(numero,regiao,operadora));
-		numero = 0;
-		regiao = 0;
+		Telefone novo = new Telefone(numero, regiao, operadora);
+		try {
+			if (numero == "") {
+				throw new Exception("Falta o número");
+			}
+			for (Telefone telefone : telefones) {
+				if (novo.equals(telefone)) {
+					throw new JaExisteException("Este telefone já existe");
+				}
+			}
+			telefones.add(novo);
+		} catch (Exception e) {
+		}
+		numero = "";
+		regiao = "";
 		operadora = "";
 	}
-	
+
 	public void addEMail() {
-		emails.add(email);
+		try {
+			if (email == "") {
+				throw new Exception("Falta o E-Mail");
+			}
+			for (String email2 : emails) {
+				if (email.equals(email2)) {
+					throw new JaExisteException("Este E-Mail já existe");
+				}
+			}
+			emails.add(email);
+		} catch (Exception e) {
+		}
 		this.email = "";
 	}
 
 	public void removeTelefone() {
+		telefones.remove(telefoneSelecionado);
+	}
 
+	public void removeEMail() {
+		emails.remove(emailSelecionado);
 	}
 
 	public void reset() {
 		nome = "";
-		idade = 0;
+		idade = "";
 		descricao = "";
 		emails = new ArrayList<String>();
 		telefones = new ArrayList<Telefone>();
-		numero = 0;
-		regiao = 0;
+		numero = "";
+		regiao = "";
 		operadora = "";
 		telefoneSelecionado = null;
 		emailSelecionado = "";
@@ -73,11 +101,11 @@ public class CadastroBean {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
+	public String getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
+	public void setIdade(String idade) {
 		this.idade = idade;
 	}
 
@@ -105,19 +133,19 @@ public class CadastroBean {
 		this.emails = emails;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public int getRegiao() {
+	public String getRegiao() {
 		return regiao;
 	}
 
-	public void setRegiao(int regiao) {
+	public void setRegiao(String regiao) {
 		this.regiao = regiao;
 	}
 
@@ -152,5 +180,4 @@ public class CadastroBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }
