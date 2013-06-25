@@ -1,5 +1,6 @@
 package sistema;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -27,5 +28,16 @@ public class Agenda {
 
 	public void setContatos(Set<Contato> contatos) {
 		this.contatos = contatos;
+	}
+
+	public List<Contato> buscaNome(String string) {
+		List<Contato> result = new ArrayList<Contato>();
+		for (Contato contato : contatos) {
+			if (contato.getNome().toLowerCase()
+					.startsWith(string.toLowerCase())) {
+				result.add(contato);
+			}
+		}
+		return result;
 	}
 }

@@ -114,7 +114,7 @@
 			action="#{editarBean.finalizaEdicao()}" update="erroNome,erroIdade"
 			disabled="#{editarBean.telefones.size()==0}" />
 		<p:commandButton id="cancela" value="Cancelar"
-			action="#{editarBean.cancelar()}" />
+			action="#{editarBean.cancelar()}" update="erroNome,erroIdade" />
 	</h:form>
 </h:body>
 </html>

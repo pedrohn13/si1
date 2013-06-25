@@ -11,7 +11,7 @@
 </h:head>
 <h:body>
 	<h:form id="form">
-		<h:outputText value="* = Campos Obrigatórios" />
+		<p:outputLabel value="* = Campos Obrigatórios" />
 		<p:panel id="panelNome" header="Cadastro de Novo Contato">
 			<h:panelGrid id="grid1" columns="3">
 				<h:outputLabel for="nome" value="Nome: *" />
@@ -52,7 +52,7 @@
 
 				<h:outputText value="Operadora: " />
 				<p:selectOneMenu value="#{cadastroBean.operadora}">
-					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="Escolha Uma" itemValue="" />
 					<f:selectItem itemLabel="Fixo" itemValue="Fixo" />
 					<f:selectItem itemLabel="Claro" itemValue="Claro" />
 					<f:selectItem itemLabel="Oi" itemValue="Oi" />

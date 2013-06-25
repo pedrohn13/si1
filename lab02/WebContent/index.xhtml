@@ -10,56 +10,63 @@
 	<title>Agenda Telefônica - v.1</title>
 </h:head>
 <h:body>
-	<h:form id="form">
-		<p:commandButton value="Cadastrar Contato"
-			action="#{agendaBean.criarContato()}" />
+	<h:panelGrid columns="2">
+		<h:form id="form">
+			<p:commandButton value="Cadastrar Contato"
+				action="#{agendaBean.criarContato()}" />
 
+			<p:dataTable id="contatos" var="contato"
+				value="#{agendaBean.contatos}" style="width:50%">
+				<p:column headerText="Nome">
+					<h:outputText value="#{contato.nome}" />
+				</p:column>
 
-		<p:dataTable id="contatos" var="contato"
-			value="#{agendaBean.contatos}" style="width:50%">
-			<p:column headerText="Nome">
-				<h:outputText value="#{contato.nome}" />
-			</p:column>
+				<p:column headerText="N° Telefones" style="width:5%">
+					<h:outputText value="#{contato.telefones.size()}" />
+				</p:column>
 
-			<p:column headerText="N° Telefones" style="width:5%">
-				<h:outputText value="#{contato.telefones.size()}" />
-			</p:column>
+				<p:column headerText="Detalhes" style="width:5%">
+					<p:commandButton id="selectButton2" update=":form"
+						oncomplete="detalhes.show()" icon="ui-icon-search" title="View">
+						<f:setPropertyActionListener value="#{contato}"
+							target="#{agendaBean.contatoSelecionado}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
 
-			<p:column headerText="Detalhes" style="width:5%">
-				<p:commandButton id="selectButton2" update=":form"
-					oncomplete="detalhes.show()" icon="ui-icon-search" title="View">
-					<f:setPropertyActionListener value="#{contato}"
-						target="#{agendaBean.contatoSelecionado}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-
-		<p:dialog header="Detalhes de Contato" widgetVar="detalhes"
-			resizable="true" id="detalhe" showEffect="fade" hideEffect="fade"
-			modal="true">
-			<h:panelGrid columns="2">
-				<h:outputText value="Nome: " />
-				<h:outputText value="#{agendaBean.contatoSelecionado.nome}" />
-				<h:outputText value="Idade: "
-					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
-				<h:outputText value="#{agendaBean.contatoSelecionado.idade}"
-					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
-				<h:outputText value="Descrição: "
-					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
-				<h:outputText value="#{agendaBean.contatoSelecionado.descricao}"
-					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
-			</h:panelGrid>
-			<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
-				var="tel" itemType="disc">  
+			<p:dialog header="Detalhes de Contato" widgetVar="detalhes"
+				resizable="true" id="detalhe" showEffect="fade" hideEffect="fade"
+				modal="true">
+				<h:panelGrid columns="2">
+					<h:outputText value="Nome: " />
+					<h:outputText value="#{agendaBean.contatoSelecionado.nome}" />
+					<h:outputText value="Idade: "
+						rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+					<h:outputText value="#{agendaBean.contatoSelecionado.idade}"
+						rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+					<h:outputText value="Descrição: "
+						rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+					<h:outputText value="#{agendaBean.contatoSelecionado.descricao}"
+						rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+				</h:panelGrid>
+				<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
+					var="tel" itemType="disc">  
    				 #{tel}  
 			</p:dataList>
-			<p:dataList value="#{agendaBean.contatoSelecionado.emails}" var="em"
-				itemType="disc"
-				rendered="#{agendaBean.contatoSelecionado.emails.size()>0}">  
+				<p:dataList value="#{agendaBean.contatoSelecionado.emails}" var="em"
+					itemType="disc"
+					rendered="#{agendaBean.contatoSelecionado.emails.size()>0}">  
    				 #{em}  
 			</p:dataList>
-			<p:commandButton value="Editar" action="#{agendaBean.editar()}" />
-		</p:dialog>
-	</h:form>
+				<p:commandButton value="Editar" action="#{agendaBean.editar()}" />
+			</p:dialog>
+		</h:form>
+		<h:form>
+			<p:panel header="Busca de Contato">
+				<p:outputLabel value="Buscar Contato :" />
+				<p:inputText value="#{agendaBean.busca}" />
+			</p:panel>
+		</h:form>
+	</h:panelGrid>
 </h:body>
 </html>

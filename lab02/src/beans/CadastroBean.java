@@ -30,6 +30,13 @@ public class CadastroBean {
 	private String emailSelecionado;
 
 	public String finalizaCadastro() {
+		try {
+			Integer temp = new Integer(idade);
+			if (temp.intValue() <= 0) {
+				throw new Exception("Valor inválido");
+			}
+		} catch (Exception e) {
+		}
 		contato = new Contato(nome.trim(), idade, descricao.trim(), telefones,
 				emails);
 		AgendaBean.getAgenda().getContatos().add(contato);
@@ -38,11 +45,19 @@ public class CadastroBean {
 	}
 
 	public void addTelefone() {
-		Telefone novo = new Telefone(numero, regiao, operadora);
+		Telefone novo = new Telefone(numero, regiao, operadora);;
 		try {
 			if (numero == "") {
 				throw new Exception("Falta o número");
 			}
+			
+			Integer temp = new Integer(numero);
+			if (temp.intValue() <= 0) {
+				throw new Exception("Valor inválido");
+			}
+
+			
+			
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {
 					throw new JaExisteException("Este telefone já existe");
@@ -51,6 +66,7 @@ public class CadastroBean {
 			telefones.add(novo);
 		} catch (Exception e) {
 		}
+		
 		numero = "";
 		regiao = "";
 		operadora = "";

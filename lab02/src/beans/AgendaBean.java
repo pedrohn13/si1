@@ -16,6 +16,7 @@ public class AgendaBean {
 	public static Agenda agenda = new Agenda();
 	public static Contato contatoSelecionado;
 	private List<Contato> contatos;
+	private String busca;
 
 	public String criarContato() {
 		return "cadastro";
@@ -46,4 +47,14 @@ public class AgendaBean {
 		EditarBean.reset();
 		return "editar";
 	}
+
+	public String getBusca() {
+		return busca;
+	}
+
+	public void setBusca(String busca) {
+		this.busca = busca;
+	} 
+	
+	
 }
