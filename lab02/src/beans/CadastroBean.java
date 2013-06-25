@@ -51,12 +51,7 @@ public class CadastroBean {
 				throw new Exception("Falta o número");
 			}
 			
-			Integer temp = new Integer(numero);
-			if (temp.intValue() <= 0) {
-				throw new Exception("Valor inválido");
-			}
-
-			
+					
 			
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {

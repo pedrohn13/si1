@@ -1,5 +1,6 @@
 package sistema;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contato implements Comparable<Contato> {
@@ -59,6 +60,12 @@ public class Contato implements Comparable<Contato> {
 		this.emails = emails;
 	}
 
+	public Contato clone() {
+		List<Telefone> novoTele = new ArrayList<Telefone>(telefones);
+		List<String> novoEmails = new ArrayList<String>(emails);
+		return new Contato(nome, idade, descricao, novoTele, novoEmails);
+	}
+
 	@Override
 	public int compareTo(Contato outroContato) {
 		return this.nome.compareTo(outroContato.getNome());
@@ -88,4 +95,5 @@ public class Contato implements Comparable<Contato> {
 			return false;
 		return true;
 	}
+
 }

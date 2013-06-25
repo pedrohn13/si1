@@ -16,16 +16,17 @@ public class AgendaBean {
 	public static Agenda agenda = new Agenda();
 	public static Contato contatoSelecionado;
 	private List<Contato> contatos;
-	private String busca;
+	private String busca = "";
 
 	public String criarContato() {
 		return "cadastro";
 	}
 
 	public List<Contato> getContatos() {
-		contatos = new ArrayList<Contato>(agenda.getContatos());
+		contatos = agenda.buscaNome(busca);
 		return contatos;
 	}
+	
 
 	public Contato getContatoSelecionado() {
 		return contatoSelecionado;

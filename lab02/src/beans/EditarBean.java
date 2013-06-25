@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,15 +12,13 @@ import sistema.Telefone;
 @ManagedBean
 @SessionScoped
 public class EditarBean {
-
+	// TODO MESMO QUE CANCELE AINDA ESTA EDITANDO
 	private static String nome = AgendaBean.contatoSelecionado.getNome();
 	private static String idade = AgendaBean.contatoSelecionado.getIdade();
 	private static String descricao = AgendaBean.contatoSelecionado
 			.getDescricao();
-	private static List<Telefone> telefones = AgendaBean.contatoSelecionado
-			.getTelefones();
-	private static List<String> emails = AgendaBean.contatoSelecionado
-			.getEmails();
+	private static List<Telefone> telefones = new ArrayList<Telefone>();
+	private static List<String> emails = new ArrayList<String>();;
 
 	private static String numero;
 	private static String regiao;
@@ -35,10 +34,12 @@ public class EditarBean {
 		AgendaBean.contatoSelecionado.setDescricao(descricao);
 		AgendaBean.contatoSelecionado.setTelefones(telefones);
 		AgendaBean.contatoSelecionado.setEmails(emails);
+		AgendaBean.contatoSelecionado = null;
 		return "index";
 	}
 
 	public String cancelar() {
+		AgendaBean.contatoSelecionado = null;
 		return "index";
 	}
 
@@ -48,6 +49,9 @@ public class EditarBean {
 			if (numero == "") {
 				throw new Exception("Falta o número");
 			}
+			
+			
+
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {
 					throw new JaExisteException("Este telefone já existe");
@@ -89,14 +93,31 @@ public class EditarBean {
 		nome = AgendaBean.contatoSelecionado.getNome();
 		idade = AgendaBean.contatoSelecionado.getIdade();
 		descricao = AgendaBean.contatoSelecionado.getDescricao();
-		telefones = AgendaBean.contatoSelecionado.getTelefones();
-		emails = AgendaBean.contatoSelecionado.getEmails();
 		numero = "";
 		regiao = "";
 		operadora = "";
 		email = "";
 		telefoneSelecionado = null;
 		emailSelecionado = "";
+
+		resetaListas();
+	}
+
+	private static void resetaListas() {
+		telefones = new ArrayList<Telefone>();
+		emails = new ArrayList<String>();
+		
+		List<Telefone> temp1 = AgendaBean.contatoSelecionado.getTelefones();
+		List<String> temp2 = AgendaBean.contatoSelecionado.getEmails();
+
+		
+		for (Telefone tele : temp1) {
+			telefones.add(tele);
+		}
+
+		for (String email : temp2) {
+			emails.add(email);
+		}
 	}
 
 	public String getNome() {

@@ -23,9 +23,9 @@
 
 				<h:outputLabel for="idade" value="Idade: " />
 				<p:inputText id="idade" value="#{cadastroBean.idade}" label="Idade">
-					<f:validateLength minimum="1" maximum="3"/>
+					<f:validateLength minimum="1" maximum="3" />
 				</p:inputText>
-				<p:message for="idade" id="erroIdade"/>
+				<p:message for="idade" id="erroIdade" />
 
 				<h:outputLabel for="descricao" value="Descrição: " />
 				<p:inputTextarea id="descricao" rows="6" cols="33"
@@ -35,20 +35,14 @@
 		</p:panel>
 
 		<p:panel id="panelTelefone" header="Novo Telefone *">
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="2">
 				<h:outputLabel for="numero" value="Número: *" />
-				<p:inputText id="numero" value="#{cadastroBean.numero}"
-					label="Numero">
-					<f:validateLength minimum="8" maximum="8" />
-				</p:inputText>
-				<p:message for="numero" id="erroNumero" />
+				<p:inputMask id="numero" value="#{cadastroBean.numero}"
+					mask="99999999" />
 
 				<h:outputLabel for="regiao" value="Região: " />
-				<p:inputText id="regiao" value="#{cadastroBean.regiao}"
-					label="Regiao">
-					<f:validateLength minimum="2" maximum="2" />
-				</p:inputText>
-				<p:message for="regiao" id="erroRegiao" />
+				<p:inputMask id="regiao" value="#{cadastroBean.regiao}" mask="99" />
+
 
 				<h:outputText value="Operadora: " />
 				<p:selectOneMenu value="#{cadastroBean.operadora}">
@@ -62,7 +56,7 @@
 
 				<p:commandButton value="Adicionar"
 					action="#{cadastroBean.addTelefone()}"
-					update="telTable,erroNome,finaliza,erroNumero,erroRegiao,panelTelefone,erroIdade" />
+					update="telTable,erroNome,finaliza,panelTelefone,erroIdade" />
 			</h:panelGrid>
 			<p:dataTable id="telTable" var="tel"
 				value="#{cadastroBean.telefones}" style="width:50%">
@@ -98,7 +92,8 @@
 					action="#{cadastroBean.addEMail()}"
 					update="emailTable,erroNome,finaliza,panelEmail" />
 			</h:panelGrid>
-			<p:dataTable id="emailTable" var="ema" value="#{cadastroBean.emails}" style="width:50%">
+			<p:dataTable id="emailTable" var="ema" value="#{cadastroBean.emails}"
+				style="width:50%">
 				<p:column headerText="E-Mails">
 					<h:outputText value="#{ema}" />
 				</p:column>
@@ -114,7 +109,8 @@
 			</p:dataTable>
 		</p:panel>
 		<p:commandButton id="finaliza" value="Finalizar Cadastro"
-			action="#{cadastroBean.finalizaCadastro()}" update="erroNome,erroIdade"
+			action="#{cadastroBean.finalizaCadastro()}"
+			update="erroNome,erroIdade"
 			disabled="#{cadastroBean.telefones.size()==0}" />
 	</h:form>
 </h:body>
