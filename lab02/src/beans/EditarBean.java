@@ -12,7 +12,7 @@ import sistema.Telefone;
 @ManagedBean
 @SessionScoped
 public class EditarBean {
-	// TODO MESMO QUE CANCELE AINDA ESTA EDITANDO
+	
 	private static String nome = AgendaBean.contatoSelecionado.getNome();
 	private static String idade = AgendaBean.contatoSelecionado.getIdade();
 	private static String descricao = AgendaBean.contatoSelecionado
@@ -48,9 +48,7 @@ public class EditarBean {
 		try {
 			if (numero == "") {
 				throw new Exception("Falta o número");
-			}
-			
-			
+			}			
 
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {
