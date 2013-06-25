@@ -15,15 +15,21 @@ public class AgendaBean {
 
 	public static Agenda agenda = new Agenda();
 	public static Contato contatoSelecionado;
-	private List<Contato> contatos;
-	private String busca = "";
+	private List<Contato> contatos = new ArrayList<Contato>();
+	private List<Contato> contatosEncontrados;
+	private String busca;
+	private String modoBusca;
 
 	public String criarContato() {
 		return "cadastro";
 	}
+	
+	public void buscarContato(){
+		contatosEncontrados = agenda.buscar(busca, modoBusca);
+	}
 
 	public List<Contato> getContatos() {
-		contatos = agenda.buscaNome(busca);
+		contatos = new ArrayList<Contato>(agenda.getContatos());
 		return contatos;
 	}
 	
@@ -34,6 +40,10 @@ public class AgendaBean {
 
 	public void setContatoSelecionado(Contato contatoSelecionado) {
 		this.contatoSelecionado = contatoSelecionado;
+	}
+	
+	public int numContatos() {
+		return contatos.size();
 	}
 
 	public static Agenda getAgenda() {
@@ -55,6 +65,22 @@ public class AgendaBean {
 
 	public void setBusca(String busca) {
 		this.busca = busca;
+	}
+
+	public String getModoBusca() {
+		return modoBusca;
+	}
+
+	public void setModoBusca(String modoBusca) {
+		this.modoBusca = modoBusca;
+	}
+
+	public List<Contato> getContatosEncontrados() {
+		return contatosEncontrados;
+	}
+
+	public void setContatosEncontrados(List<Contato> contatosEncontrados) {
+		this.contatosEncontrados = contatosEncontrados;
 	} 
 	
 	

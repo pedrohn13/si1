@@ -35,18 +35,13 @@
 		</p:panel>
 
 		<p:panel id="panelTelefone" header="Novo Telefone *">
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="2">
 				<h:outputLabel for="numero" value="Número: *" />
-				<p:inputText id="numero" value="#{editarBean.numero}" label="Numero">
-					<f:validateLength minimum="8" maximum="8" />
-				</p:inputText>
-				<p:message for="numero" id="erroNumero" />
+				<p:inputMask id="numero" value="#{editarBean.numero}"
+					mask="99999999" />
 
 				<h:outputLabel for="regiao" value="Região: " />
-				<p:inputText id="regiao" value="#{editarBean.regiao}" label="Regiao">
-					<f:validateLength minimum="2" maximum="2" />
-				</p:inputText>
-				<p:message for="regiao" id="erroRegiao" />
+				<p:inputMask id="regiao" value="#{editarBean.regiao}" mask="99" />
 
 				<h:outputText value="Operadora: " />
 				<p:selectOneMenu value="#{editarBean.operadora}">
@@ -60,7 +55,7 @@
 
 				<p:commandButton value="Adicionar"
 					action="#{editarBean.addTelefone()}"
-					update="telTable,erroNome,erroIdade,finaliza,erroNumero,erroRegiao,panelTelefone" />
+					update="telTable,erroNome,erroIdade,finaliza,panelTelefone" />
 			</h:panelGrid>
 			<p:dataTable id="telTable" var="tel" value="#{editarBean.telefones}"
 				style="width:50%">

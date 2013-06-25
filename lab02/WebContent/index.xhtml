@@ -7,61 +7,97 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Agenda Telefônica - v.1</title>
+	<title>Agenda Telefônica - Pedro Henriques</title>
 </h:head>
 <h:body>
-	<h:panelGrid columns="2">
-		<h:form id="form">
-			<p:commandButton value="Cadastrar Contato"
-				action="#{agendaBean.criarContato()}" />
+	<h:form id="form">
+		<p:commandButton value="Cadastrar Contato"
+			action="#{agendaBean.criarContato()}" />
+		<p:commandButton value="Buscar Contato" oncomplete="buscar.show()"
+			title="Buscar" />
 
-			<p:dataTable id="contatos" var="contato"
-				value="#{agendaBean.contatos}" style="width:50%">
+		<p:dataTable id="contatos" var="contato"
+			value="#{agendaBean.contatos}" style="width:50%">
+			<p:column headerText="Nome">
+				<h:outputText value="#{contato.nome}" />
+			</p:column>
+
+			<p:column headerText="N° Telefones" style="width:5%">
+				<h:outputText value="#{contato.telefones.size()}" />
+			</p:column>
+
+			<p:column headerText="Detalhes" style="width:5%">
+				<p:commandButton id="selectButton2" update=":form"
+					oncomplete="detalhes.show()" icon="ui-icon-search"
+					title="Destalhes">
+					<f:setPropertyActionListener value="#{contato}"
+						target="#{agendaBean.contatoSelecionado}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+		<p:dialog header="Detalhes de Contato" widgetVar="detalhes"
+			resizable="true" id="detalhe" showEffect="fade" hideEffect="fade"
+			modal="true">
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome: " />
+				<h:outputText value="#{agendaBean.contatoSelecionado.nome}" />
+				<h:outputText value="Idade: "
+					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+				<h:outputText value="#{agendaBean.contatoSelecionado.idade}"
+					rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
+				<h:outputText value="Descrição: "
+					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+				<h:outputText value="#{agendaBean.contatoSelecionado.descricao}"
+					rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
+			</h:panelGrid>
+			<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
+				var="tel" itemType="disc">  
+   				 #{tel}  
+			</p:dataList>
+			<p:dataList value="#{agendaBean.contatoSelecionado.emails}" var="em"
+				itemType="disc"
+				rendered="#{agendaBean.contatoSelecionado.emails.size()>0}">  
+   				 #{em}  
+			</p:dataList>
+			<p:commandButton value="Editar" action="#{agendaBean.editar()}" />
+		</p:dialog>
+
+		<p:dialog header="Buscar Contato" widgetVar="buscar" resizable="true"
+			id="buscador" showEffect="fade" hideEffect="fade" modal="true">
+			<h:panelGrid columns="3">
+				<p:inputText value="#{agendaBean.busca}" />
+				<p:selectOneMenu value="#{agendaBean.modoBusca}">
+					<f:selectItem itemLabel="Nome" itemValue="nome" />
+					<f:selectItem itemLabel="Telefone" itemValue="numero" />
+					<f:selectItem itemLabel="Idade menor que" itemValue="idadeMenor" />
+					<f:selectItem itemLabel="Idade maior que" itemValue="idadeMaior" />
+					<f:selectItem itemLabel="Idade igual a" itemValue="idadeIgual" />
+				</p:selectOneMenu>
+				<p:commandButton value="Buscar"
+					action="#{agendaBean.buscarContato()}" update="contatosEncontrados" />
+			</h:panelGrid>
+
+			<p:dataTable id="contatosEncontrados" var="cont"
+				value="#{agendaBean.contatosEncontrados}">
 				<p:column headerText="Nome">
-					<h:outputText value="#{contato.nome}" />
+					<h:outputText value="#{cont.nome}" />
 				</p:column>
 
 				<p:column headerText="N° Telefones" style="width:5%">
-					<h:outputText value="#{contato.telefones.size()}" />
+					<h:outputText value="#{cont.telefones.size()}" />
 				</p:column>
 
 				<p:column headerText="Detalhes" style="width:5%">
 					<p:commandButton id="selectButton2" update=":form"
-						oncomplete="detalhes.show()" icon="ui-icon-search" title="View">
-						<f:setPropertyActionListener value="#{contato}"
+						oncomplete="detalhes.show()" icon="ui-icon-search"
+						title="Destalhes">
+						<f:setPropertyActionListener value="#{cont}"
 							target="#{agendaBean.contatoSelecionado}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-
-			<p:dialog header="Detalhes de Contato" widgetVar="detalhes"
-				resizable="true" id="detalhe" showEffect="fade" hideEffect="fade"
-				modal="true">
-				<h:panelGrid columns="2">
-					<h:outputText value="Nome: " />
-					<h:outputText value="#{agendaBean.contatoSelecionado.nome}" />
-					<h:outputText value="Idade: "
-						rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
-					<h:outputText value="#{agendaBean.contatoSelecionado.idade}"
-						rendered="#{agendaBean.contatoSelecionado.idade!=''}" />
-					<h:outputText value="Descrição: "
-						rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
-					<h:outputText value="#{agendaBean.contatoSelecionado.descricao}"
-						rendered="#{agendaBean.contatoSelecionado.descricao!=''}" />
-				</h:panelGrid>
-				<p:dataList value="#{agendaBean.contatoSelecionado.telefones}"
-					var="tel" itemType="disc">  
-   				 #{tel}  
-			</p:dataList>
-				<p:dataList value="#{agendaBean.contatoSelecionado.emails}" var="em"
-					itemType="disc"
-					rendered="#{agendaBean.contatoSelecionado.emails.size()>0}">  
-   				 #{em}  
-			</p:dataList>
-				<p:commandButton value="Editar" action="#{agendaBean.editar()}" />
-			</p:dialog>
-		</h:form>
-		
-	</h:panelGrid>
+		</p:dialog>
+	</h:form>
 </h:body>
 </html>
