@@ -6,13 +6,12 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import sistema.JaExisteException;
 import sistema.Telefone;
 
 @ManagedBean
 @SessionScoped
 public class EditarBean {
-	
+
 	private static String nome = AgendaBean.contatoSelecionado.getNome();
 	private static String idade = AgendaBean.contatoSelecionado.getIdade();
 	private static String descricao = AgendaBean.contatoSelecionado
@@ -29,13 +28,23 @@ public class EditarBean {
 	private static String emailSelecionado;
 
 	public String finalizaEdicao() {
-		AgendaBean.contatoSelecionado.setNome(nome);
-		AgendaBean.contatoSelecionado.setIdade(idade);
-		AgendaBean.contatoSelecionado.setDescricao(descricao);
-		AgendaBean.contatoSelecionado.setTelefones(telefones);
-		AgendaBean.contatoSelecionado.setEmails(emails);
-		AgendaBean.contatoSelecionado = null;
-		return "index";
+		try {
+			if (!idade.equals("")) {
+				Integer temp = new Integer(idade);
+				if (temp.intValue() <= 0) {
+					throw new Exception("Valor inválido");
+				}
+			}
+			AgendaBean.contatoSelecionado.setNome(nome);
+			AgendaBean.contatoSelecionado.setIdade(idade);
+			AgendaBean.contatoSelecionado.setDescricao(descricao);
+			AgendaBean.contatoSelecionado.setTelefones(telefones);
+			AgendaBean.contatoSelecionado.setEmails(emails);
+			AgendaBean.contatoSelecionado = null;
+			return "index";
+		} catch (Exception e) {
+			return "";
+		}
 	}
 
 	public String cancelar() {
@@ -48,19 +57,20 @@ public class EditarBean {
 		try {
 			if (numero == "") {
 				throw new Exception("Falta o número");
-			}			
+			}
 
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {
-					throw new JaExisteException("Este telefone já existe");
+					throw new Exception("Este telefone já existe");
 				}
 			}
 			telefones.add(novo);
+			numero = "";
+			regiao = "";
+			operadora = "";
 		} catch (Exception e) {
 		}
-		numero = "";
-		regiao = "";
-		operadora = "";
+		
 	}
 
 	public void removeTelefone() {
@@ -74,13 +84,13 @@ public class EditarBean {
 			}
 			for (String email2 : emails) {
 				if (email.equals(email2)) {
-					throw new JaExisteException("Este E-Mail já existe");
+					throw new Exception("Este E-Mail já existe");
 				}
 			}
 			emails.add(email);
+			email = "";
 		} catch (Exception e) {
 		}
-		this.email = "";
 	}
 
 	public void removeEMail() {
@@ -104,11 +114,10 @@ public class EditarBean {
 	private static void resetaListas() {
 		telefones = new ArrayList<Telefone>();
 		emails = new ArrayList<String>();
-		
+
 		List<Telefone> temp1 = AgendaBean.contatoSelecionado.getTelefones();
 		List<String> temp2 = AgendaBean.contatoSelecionado.getEmails();
 
-		
 		for (Telefone tele : temp1) {
 			telefones.add(tele);
 		}

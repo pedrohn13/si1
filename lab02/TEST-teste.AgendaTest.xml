@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Pedro-PC" name="teste.AgendaTest" skipped="0" tests="2" time="0.054" timestamp="2013-06-25T23:25:39">
+<testsuite errors="0" failures="0" hostname="Pedro-PC" name="teste.AgendaTest" skipped="0" tests="2" time="0.063" timestamp="2013-06-25T23:49:25">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -55,7 +55,7 @@
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner teste.AgendaTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Pedro\workspace\si1\lab02\TEST-teste.AgendaTest.xml crashfile=C:\Users\Pedro\workspace\si1\lab02\junitvmwatcher4844578858695770433.properties propsfile=C:\Users\Pedro\workspace\si1\lab02\junit8771383037973488418.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner teste.AgendaTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Pedro\workspace\si1\lab02\TEST-teste.AgendaTest.xml crashfile=C:\Users\Pedro\workspace\si1\lab02\junitvmwatcher2459217025342335852.properties propsfile=C:\Users\Pedro\workspace\si1\lab02\junit5260270348710061549.properties" />
     <property name="java.class.path" value="C:\Users\Pedro\workspace\si1\lab02\lib\jsf-api.jar;C:\Users\Pedro\workspace\si1\lab02\lib\jsf-impl.jar;C:\Users\Pedro\workspace\si1\lab02\lib\junit-4.10.jar;C:\Users\Pedro\workspace\si1\lab02\lib\primefaces-3.5.jar;C:\Users\Pedro\workspace\si1\lab02\bin;C:\ant\lib\ant-launcher.jar;C:\ant\lib\ant.jar;C:\ant\lib\ant-junit.jar;C:\ant\lib\ant-junit4.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.1 compiled on May 15 2013" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
@@ -80,7 +80,7 @@
     <property name="java.specification.version" value="1.7" />
     <property name="ant.project.invoked-targets" value="limpa,compila,testa,war" />
   </properties>
-  <testcase classname="teste.AgendaTest" name="testBuscarContato" time="0.004" />
+  <testcase classname="teste.AgendaTest" name="testBuscarContato" time="0.005" />
   <testcase classname="teste.AgendaTest" name="testInserirContato" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

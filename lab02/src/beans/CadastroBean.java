@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import sistema.Contato;
-import sistema.JaExisteException;
 import sistema.Telefone;
 
 @ManagedBean
@@ -31,40 +30,41 @@ public class CadastroBean {
 
 	public String finalizaCadastro() {
 		try {
-			Integer temp = new Integer(idade);
-			if (temp.intValue() <= 0) {
-				throw new Exception("Valor inválido");
+			if (!idade.equals("")) {
+				Integer temp = new Integer(idade);
+				if (temp.intValue() <= 0) {
+					throw new Exception("Valor inválido");
+				}
 			}
+			contato = new Contato(nome.trim(), idade, descricao.trim(),
+					telefones, emails);
+			AgendaBean.getAgenda().getContatos().add(contato);
+			reset();
+			return "index";
 		} catch (Exception e) {
+			return "";
 		}
-		contato = new Contato(nome.trim(), idade, descricao.trim(), telefones,
-				emails);
-		AgendaBean.getAgenda().getContatos().add(contato);
-		reset();
-		return "index";
 	}
 
 	public void addTelefone() {
-		Telefone novo = new Telefone(numero, regiao, operadora);;
+		Telefone novo = new Telefone(numero, regiao, operadora);
+		;
 		try {
 			if (numero == "") {
 				throw new Exception("Falta o número");
 			}
-			
-					
-			
+
 			for (Telefone telefone : telefones) {
 				if (novo.equals(telefone)) {
-					throw new JaExisteException("Este telefone já existe");
+					throw new Exception("Este telefone já existe");
 				}
 			}
 			telefones.add(novo);
+			numero = "";
+			regiao = "";
+			operadora = "";
 		} catch (Exception e) {
-		}
-		
-		numero = "";
-		regiao = "";
-		operadora = "";
+		}		
 	}
 
 	public void addEMail() {
@@ -74,13 +74,14 @@ public class CadastroBean {
 			}
 			for (String email2 : emails) {
 				if (email.equals(email2)) {
-					throw new JaExisteException("Este E-Mail já existe");
+					throw new Exception("Este E-Mail já existe");
 				}
 			}
 			emails.add(email);
+			email = "";
 		} catch (Exception e) {
 		}
-		this.email = "";
+		
 	}
 
 	public void removeTelefone() {

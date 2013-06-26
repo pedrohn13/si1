@@ -54,9 +54,11 @@ public class Agenda {
 
 			List<Contato> result = new ArrayList<Contato>();
 			for (Contato contato : contatos) {
-				Integer idadeContato = new Integer(contato.getIdade());
-				if (idadeContato.intValue() == idade.intValue()) {
-					result.add(contato);
+				if (!contato.getIdade().equals("")) {
+					Integer idadeContato = new Integer(contato.getIdade());
+					if (idadeContato.intValue() == idade.intValue()) {
+						result.add(contato);
+					}
 				}
 			}
 			return result;
@@ -75,9 +77,11 @@ public class Agenda {
 
 			List<Contato> result = new ArrayList<Contato>();
 			for (Contato contato : contatos) {
-				Integer idadeContato = new Integer(contato.getIdade());
-				if (idadeContato.intValue() <= idade.intValue()) {
-					result.add(contato);
+				if (!contato.getIdade().equals("")) {
+					Integer idadeContato = new Integer(contato.getIdade());
+					if (idadeContato.intValue() <= idade.intValue()) {
+						result.add(contato);
+					}
 				}
 			}
 			return result;
@@ -96,9 +100,11 @@ public class Agenda {
 
 			List<Contato> result = new ArrayList<Contato>();
 			for (Contato contato : contatos) {
-				Integer idadeContato = new Integer(contato.getIdade());
-				if (idadeContato.intValue() >= idade.intValue()) {
-					result.add(contato);
+				if (!contato.getIdade().equals("")) {
+					Integer idadeContato = new Integer(contato.getIdade());
+					if (idadeContato.intValue() >= idade.intValue()) {
+						result.add(contato);
+					}
 				}
 			}
 			return result;

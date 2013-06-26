@@ -44,7 +44,7 @@ public class AgendaTest {
 		agenda.inserirContato("Adriana", "20", "", telefones, null);
 		agenda.inserirContato("Paula", "18", "", telefones, null);
 		agenda.inserirContato("Jose", "11", "", telefones, null);
-		agenda.inserirContato("Joao", "15", "", telefones, null);
+		agenda.inserirContato("Joao", "", "", telefones, null);
 		Assert.assertEquals(8, agenda.getQtdContatos());
 
 		Assert.assertEquals(3, agenda.buscar("p", "nome").size());
@@ -67,14 +67,14 @@ public class AgendaTest {
 		Assert.assertEquals(0, agenda.buscar("81", "numero").size());
 		
 		Assert.assertEquals(5, agenda.buscar("20", "idadeMaior").size());
-		Assert.assertEquals(8, agenda.buscar("0", "idadeMaior").size());
+		Assert.assertEquals(7, agenda.buscar("0", "idadeMaior").size());
 		Assert.assertEquals(2, agenda.buscar("27", "idadeMaior").size());
 		Assert.assertEquals(0, agenda.buscar("200", "idadeMaior").size());
 		
-		Assert.assertEquals(4, agenda.buscar("20", "idadeMenor").size());
+		Assert.assertEquals(3, agenda.buscar("20", "idadeMenor").size());
 		Assert.assertEquals(0, agenda.buscar("0", "idadeMenor").size());
-		Assert.assertEquals(7, agenda.buscar("27", "idadeMenor").size());
-		Assert.assertEquals(8, agenda.buscar("200", "idadeMenor").size());
+		Assert.assertEquals(6, agenda.buscar("27", "idadeMenor").size());
+		Assert.assertEquals(7, agenda.buscar("200", "idadeMenor").size());
 		
 		Assert.assertEquals(1, agenda.buscar("20", "idadeIgual").size());
 		Assert.assertEquals(0, agenda.buscar("0", "idadeIgual").size());
