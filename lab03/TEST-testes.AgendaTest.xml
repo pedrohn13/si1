@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="Pedro-PC" name="testes.AgendaTest" skipped="0" tests="1" time="0.136" timestamp="2013-07-10T21:25:10">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="dist" value="dist" />
+    <property name="ant.file.type.Lab03" value="file" />
+    <property name="os.name" value="Windows 7" />
+    <property name="sun.boot.class.path" value="c:\Program Files\Java\jdk1.7.0_25\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0_25\jre\lib\jfr.jar;c:\Program Files\Java\jdk1.7.0_25\jre\classes" />
+    <property name="webContent" value="WebContent" />
+    <property name="sun.desktop" value="windows" />
+    <property name="ant.file.Lab03" value="c:\Users\Pedro\workspace\si1\lab03\build.xml" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="c:/DEV/apache-ant-1.9.1" />
+    <property name="java.runtime.version" value="1.7.0_25-b17" />
+    <property name="user.name" value="Pedro" />
+    <property name="user.language" value="pt" />
+    <property name="build" value="bin" />
+    <property name="webLibs" value="WebContent/WEB-INF/lib" />
+    <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.7.0_25\jre\bin" />
+    <property name="ant.project.name" value="Lab03" />
+    <property name="java.version" value="1.7.0_25" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.7.0_25\jre\lib\endorsed" />
+    <property name="doc" value="doc" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="51.0" />
+    <property name="src" value="\c:\Users\Pedro\workspace\si1\lab03/src" />
+    <property name="user.country" value="BR" />
+    <property name="java.home" value="c:\Program Files\Java\jdk1.7.0_25\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="c:\Users\Pedro\workspace\si1\lab03\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="sysName" value="Lab03" />
+    <property name="CATALINA_HOME" value="C:\Java\apache-tomcat-7.0.41" />
+    <property name="webXML" value="WebContent/WEB-INF/web.xml" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="23.25-b01" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="c:/DEV/apache-ant-1.9.1/lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="user.script" value="" />
+    <property name="classTeste" value="easyaccept" />
+    <property name="user.home" value="C:\Users\Pedro" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="c:\Program Files\Java\jdk1.7.0_25\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\Pedro\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;c:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;c:\Program Files\Diskeeper Corporation\ExpressCache\;c:\Program Files\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files\Intel\Intel(R) Management Engine Components\IPT;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;c:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;c:\DEV\apache-ant-1.9.1\bin;c:\Program Files\VDownloader;.;.;.;.;." />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner testes.AgendaTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,c:\Users\Pedro\workspace\si1\lab03\TEST-testes.AgendaTest.xml crashfile=c:\Users\Pedro\workspace\si1\lab03\junitvmwatcher2796737388538765986.properties propsfile=c:\Users\Pedro\workspace\si1\lab03\junit7946801206305650113.properties" />
+    <property name="java.class.path" value="c:\Users\Pedro\workspace\si1\lab03\lib\jsf-api.jar;c:\Users\Pedro\workspace\si1\lab03\lib\jsf-impl.jar;c:\Users\Pedro\workspace\si1\lab03\lib\junit-4.10.jar;c:\Users\Pedro\workspace\si1\lab03\lib\primefaces-3.5.jar;c:\Users\Pedro\workspace\si1\lab03\bin;C:\DEV\apache-ant-1.9.1\lib\ant-launcher.jar;c:\DEV\apache-ant-1.9.1\lib\ant.jar;c:\DEV\apache-ant-1.9.1\lib\ant-junit.jar;c:\DEV\apache-ant-1.9.1\lib\ant-junit4.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.1 compiled on May 15 2013" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.7" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="java.io.tmpdir" value="C:\Users\Pedro\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="c:\Program Files\Java\jdk1.7.0_25\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="sysLibs" value="lib" />
+    <property name="user.dir" value="c:\Users\Pedro\workspace\si1\lab03" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="c:\Users\Pedro\workspace\si1\lab03" />
+    <property name="ant.java.version" value="1.7" />
+    <property name="warFile" value="dist/Lab03.war" />
+    <property name="ant.core.lib" value="c:\DEV\apache-ant-1.9.1\lib\ant.jar" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="java.specification.version" value="1.7" />
+    <property name="ant.project.invoked-targets" value="limpa,compila,testa,war" />
+  </properties>
+  <testcase classname="testes.AgendaTest" name="testCriarTarefa" time="0.005" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
