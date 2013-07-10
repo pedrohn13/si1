@@ -11,12 +11,12 @@ public class Agenda {
 
 	Set<Tarefa> tarefas = new HashSet<Tarefa>();
 
-	@SuppressWarnings("deprecation")
-	public void criarTarefa(String nome, String descricao, int ano, int mes,
-			int dia, int hora, int minuto) {
-		Date dataPrazo = new Date(ano, mes, dia, hora, minuto);
-		tarefas.add(new Tarefa(nome, descricao, dataPrazo));
-
+	public void criarTarefa(String nome, String descricao, Date dataPrazo) {
+		if (dataPrazo == null) {
+			tarefas.add(new Tarefa(nome, descricao, dataPrazo));
+		} else if (new Date().before(dataPrazo)) {
+			tarefas.add(new Tarefa(nome, descricao, dataPrazo));
+		}
 	}
 
 	public void completarTarefa(Tarefa tarefa) {

@@ -1,6 +1,7 @@
 package sistema;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Controlador {
@@ -13,9 +14,26 @@ public class Controlador {
 		tarefas = new ArrayList<Tarefa>();
 	}
 
-	public void criarTarefa(String nome, String descricao, int ano, int mes,
-			int dia, int hora, int minuto) {
-		agenda.criarTarefa(nome, descricao, ano, mes, dia, hora, minuto);
+	public void criarTarefa(String nome, String descricao, int... data) {
+		Date dataPrazo = criaData(data);
+		agenda.criarTarefa(nome, descricao, dataPrazo);
+	}
+
+	@SuppressWarnings("deprecation")
+	private Date criaData(int[] data) {
+		Date retorno = null;
+		if (data.length == 1) {
+			retorno = new Date(data[0], 0, 1);
+		} else if (data.length == 2) {
+			retorno = new Date(data[0], data[1], 1);
+		} else if (data.length == 3) {
+			retorno = new Date(data[0], data[1], data[2]);
+		} else if (data.length == 4) {
+			retorno = new Date(data[0], data[1], data[2], data[3], 0);
+		} else if (data.length == 5) {
+			retorno = new Date(data[0], data[1], data[2], data[3], data[4]);
+		}
+		return retorno;
 	}
 
 	public void completarTarefa(Tarefa tarefa) {
@@ -44,6 +62,22 @@ public class Controlador {
 
 	public void filtroIncompletas() {
 		this.tarefas = agenda.getTarefasIncompletas();
+	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
+	public List<Tarefa> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(List<Tarefa> tarefas) {
+		this.tarefas = tarefas;
 	}
 
 }
