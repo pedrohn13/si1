@@ -1,12 +1,15 @@
 package sistema;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Agenda {
 
-	Set<Tarefa> tarefas = new TreeSet<Tarefa>();
+	Set<Tarefa> tarefas = new HashSet<Tarefa>();
 
 	@SuppressWarnings("deprecation")
 	public void criarTarefa(String nome, String descricao, int ano, int mes,
@@ -44,8 +47,42 @@ public class Agenda {
 		return null;
 	}
 
-	public Set<Tarefa> getTarefas() {
-		return tarefas;
+	public List<Tarefa> ordenarDataCriacao() {
+		List<Tarefa> retorno = new ArrayList<Tarefa>(tarefas);
+		Collections.sort(retorno, new TarefaComparator("dataCriacao"));
+
+		return retorno;
+	}
+
+	public List<Tarefa> ordenarDataPrazo() {
+		List<Tarefa> retorno = new ArrayList<Tarefa>(tarefas);
+		Collections.sort(retorno, new TarefaComparator("dataPrazo"));
+
+		return retorno;
+	}
+
+	public List<Tarefa> getTarefasIncompletas() {
+		List<Tarefa> retorno = new ArrayList<Tarefa>();
+		for (Tarefa tarefa : tarefas) {
+			if (!tarefa.isCompletada()) {
+				retorno.add(tarefa);
+			}
+		}
+		return retorno;
+	}
+
+	public List<Tarefa> getTarefasCompletas() {
+		List<Tarefa> retorno = new ArrayList<Tarefa>();
+		for (Tarefa tarefa : tarefas) {
+			if (tarefa.isCompletada()) {
+				retorno.add(tarefa);
+			}
+		}
+		return retorno;
+	}
+
+	public List<Tarefa> getTarefas() {
+		return new ArrayList<Tarefa>(tarefas);
 	}
 
 	public void setTarefas(Set<Tarefa> tarefas) {

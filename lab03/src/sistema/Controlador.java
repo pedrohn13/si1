@@ -26,4 +26,24 @@ public class Controlador {
 		agenda.editarTarefa(tarefa, nome, descricao);
 	}
 
+	public void ordenarDataCriacao() {
+		this.tarefas = agenda.ordenarDataCriacao();
+	}
+
+	public void ordenarDataPrazo() {
+		this.tarefas = agenda.ordenarDataPrazo();
+	}
+
+	public void filtroNenhum() {
+		this.tarefas = agenda.getTarefas();
+	}
+
+	public void filtroCompletas() {
+		this.tarefas = agenda.getTarefasCompletas();
+	}
+
+	public void filtroIncompletas() {
+		this.tarefas = agenda.getTarefasIncompletas();
+	}
+
 }
