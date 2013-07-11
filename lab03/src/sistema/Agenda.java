@@ -1,15 +1,14 @@
 package sistema;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Agenda {
 
-	Set<Tarefa> tarefas = new HashSet<Tarefa>();
+	Set<Tarefa> tarefas = new TreeSet<Tarefa>();
 
 	public void criarTarefa(String nome, String descricao, Date dataPrazo) {
 		if (dataPrazo == null) {
@@ -28,11 +27,22 @@ public class Agenda {
 		}
 	}
 
-	public void editarTarefa(Tarefa tarefa, String nome, String descricao) {
+	public void editarTarefa(Tarefa tarefa, String nome, String descricao,
+			Date dataPrazo) {
 		try {
 			Tarefa estaTarefa = buscarTarefa(tarefa);
 			estaTarefa.setNome(nome);
 			estaTarefa.setDescricao(descricao);
+			estaTarefa.setDataPrazo(dataPrazo);
+		} catch (NullPointerException e) {
+			System.out.println("TAREFA NÃO EXISTE");
+		}
+	}
+
+	public void removerTarefa(Tarefa tarefa) {
+		try {
+			Tarefa estaTarefa = buscarTarefa(tarefa);
+			tarefas.remove(estaTarefa);
 		} catch (NullPointerException e) {
 			System.out.println("TAREFA NÃO EXISTE");
 		}
@@ -45,20 +55,6 @@ public class Agenda {
 			}
 		}
 		return null;
-	}
-
-	public List<Tarefa> ordenarDataCriacao() {
-		List<Tarefa> retorno = new ArrayList<Tarefa>(tarefas);
-		Collections.sort(retorno, new TarefaComparator("dataCriacao"));
-
-		return retorno;
-	}
-
-	public List<Tarefa> ordenarDataPrazo() {
-		List<Tarefa> retorno = new ArrayList<Tarefa>(tarefas);
-		Collections.sort(retorno, new TarefaComparator("dataPrazo"));
-
-		return retorno;
 	}
 
 	public List<Tarefa> getTarefasIncompletas() {

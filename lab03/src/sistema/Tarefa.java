@@ -2,7 +2,7 @@ package sistema;
 
 import java.util.Date;
 
-public class Tarefa {
+public class Tarefa implements Comparable<Tarefa> {
 
 	String nome;
 	String descricao;
@@ -59,6 +59,11 @@ public class Tarefa {
 	}
 
 	@Override
+	public int compareTo(Tarefa outraTarefa) {
+		return this.nome.compareTo(outraTarefa.getNome());
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -82,4 +87,5 @@ public class Tarefa {
 			return false;
 		return true;
 	}
+
 }

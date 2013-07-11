@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Gerênciador de Tarefas</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:panel id="panel" header="Cadastro de Nova Tarefa">
+			<h:panelGrid id="grid1" columns="3">
+				<h:outputLabel for="nome" value="Nome: *" />
+				<p:inputText id="nome" value="#{controladorBean.nome}" label="Nome" />
+				<p:growl id="growl" showDetail="true" for="nome" />
+
+				<h:outputLabel for="descricao" value="Descrição: " />
+				<p:inputTextarea id="descricao" rows="6" cols="33"
+					value="#{controladorBean.descricao}" />
+				<p:message for="descricao" />
+
+				<h:outputLabel for="prazo" value="Data Prazo: " />
+				<p:calendar value="#{controladorBean.dataPrazo}"
+					pattern="MM/dd/yyyy HH:mm" id="prazo" />
+				<p:growl id="growl2" showDetail="true" for="prazo" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:commandButton value="Salvar"
+			action="#{controladorBean.salvarEdicao()}" update="form" />
+		<p:commandButton value="Voltar" action="#{controladorBean.voltar()}" />
+	</h:form>
+
+</h:body>
+</html>

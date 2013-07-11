@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Gerênciador de Tarefas</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:commandButton value="Nova Tarefa"
+			action="#{controladorBean.criarTarefa()}" />
+
+		<h:panelGrid columns="3">
+			<p:outputLabel for="filtro" value="Filtrar Tarefas:" />
+			<p:selectOneRadio id="filtro" value="#{controladorBean.filtro}">
+				<f:selectItem itemLabel="Todas" itemValue="todas" />
+				<f:selectItem itemLabel="Incompletas" itemValue="incompletas" />
+				<f:selectItem itemLabel="Completas" itemValue="completas" />
+			</p:selectOneRadio>
+			<p:commandButton update="tarefas" value="Aplicar" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="3">
+			<p:outputLabel for="ordem" value="Ordenar Tarefas por:" />
+			<p:selectOneRadio id="ordem" value="#{controladorBean.ordem}">
+				<f:selectItem itemLabel="Data Criação" itemValue="criacao" />
+				<f:selectItem itemLabel="Data Prazo" itemValue="prazo" />
+			</p:selectOneRadio>
+			<p:commandButton update="tarefas" value="Aplicar" />
+		</h:panelGrid>
+
+		<p:dataTable id="tarefas" var="tarefa"
+			value="#{controladorBean.tarefas}" style="width:50%">
+			<p:column headerText="Nome">
+				<h:outputText value="#{tarefa.nome}" />
+			</p:column>
+
+			<p:column headerText="Descrição">
+				<h:outputText value="#{tarefa.descricao}" />
+			</p:column>
+
+			<p:column headerText="Criação">
+				<h:outputText value="#{tarefa.dataCriacao}" />
+			</p:column>
+
+			<p:column headerText="Prazo">
+				<h:outputText value="#{tarefa.dataPrazo}" />
+			</p:column>
+
+			<p:column headerText="Opções">
+				<h:panelGrid id="panelOpcoes" columns="3">
+					<p:commandButton id="completar" update="tarefas"
+						icon="ui-icon-check" title="Completar"
+						disabled="#{tarefaSelecionada.isCompletada()}"
+						action="#{controladorBean.completarTarefa()}">
+						<f:setPropertyActionListener value="#{tarefa}"
+							target="#{controladorBean.tarefaSelecionada}" />
+					</p:commandButton>
+					
+					<p:commandButton id="editar" update="tarefas"
+						icon="ui-icon-pencil" title="Editar"
+						action="#{controladorBean.editarTarefa()}">
+						<f:setPropertyActionListener value="#{tarefa}"
+							target="#{controladorBean.tarefaSelecionada}" />
+					</p:commandButton>
+					
+					<p:commandButton id="remover" update="tarefas"
+						icon="ui-icon-trash" title="Remover"
+						action="#{controladorBean.removerTarefa()}">
+						<f:setPropertyActionListener value="#{tarefa}"
+							target="#{controladorBean.tarefaSelecionada}" />
+					</p:commandButton>
+				</h:panelGrid>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

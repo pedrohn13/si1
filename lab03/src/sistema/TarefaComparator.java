@@ -14,11 +14,22 @@ public class TarefaComparator implements Comparator<Tarefa> {
 	public int compare(Tarefa tarefa1, Tarefa tarefa2) {
 		int retorno = 0;
 		if (modo.equals("dataCriacao")) {
-			retorno = tarefa1.getDataCriacao().compareTo(
-					tarefa2.getDataCriacao());
+			retorno = tarefa2.getDataCriacao().compareTo(
+					tarefa1.getDataCriacao());
 		} else if (modo.equals("dataPrazo")) {
-			retorno = tarefa1.getDataPrazo().compareTo(tarefa2.getDataPrazo());
+			if (tarefa1.getDataPrazo() == null
+					&& tarefa1.getDataPrazo() == null) {
+				retorno = 0;
+			} else if (tarefa1.getDataPrazo() == null) {
+				retorno = 1;
+			} else if (tarefa2.getDataPrazo() == null) {
+				retorno = -1;
+			} else {
+				retorno = tarefa1.getDataPrazo().compareTo(
+						tarefa2.getDataPrazo());
+			}
 		}
+		
 		if (retorno == 0) {
 			retorno = tarefa1.getNome().compareTo(tarefa2.getNome());
 		}
