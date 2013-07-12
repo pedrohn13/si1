@@ -37,18 +37,12 @@ public class AgendaTarefas {
 				System.out.println("3 - Exibir tarefas incompletas");
 			}
 
-			if (ordem.equals("criacao")) {
-				System.out.println("4 - Ordenar por Data Prazo");
-			} else if (ordem.equals("prazo")) {
-				System.out.println("4 - Ordenar por Data de Criação");
-			}
-
 			if (!control.getTarefas().isEmpty()) {
 				if (!tipos.equals("completas")) {
-					System.out.println("5 - Completar Tarefa");
+					System.out.println("4 - Completar Tarefa");
 				}
 
-				System.out.println("6 - Alterar Tarefa");
+				System.out.println("5 - Alterar Tarefa");
 			}
 
 			System.out.println("0 - Sair da Agenda");
@@ -70,22 +64,16 @@ public class AgendaTarefas {
 				} else {
 					tipos = "completas";
 				}
-			} else if (opcao.equals("4")) {
-				if (ordem.equals("criacao")) {
-					ordem = "prazo";
-				} else {
-					ordem = "criacao";
-				}
-			} else if (opcao.equals("5") && !control.getTarefas().isEmpty()) {
+
+			} else if (opcao.equals("4") && !control.getTarefas().isEmpty()) {
 				Tarefa tarefa = achaTarefa(control, scn);
 				control.completarTarefa(tarefa);
-			} else if (opcao.equals("6") && !control.getTarefas().isEmpty()) {
+			} else if (opcao.equals("5") && !control.getTarefas().isEmpty()) {
 				Tarefa tarefa = achaTarefa(control, scn);
 				System.out.println("O que deseja fazer?");
 				System.out.println("1 - Alterar Nome");
 				System.out.println("2 - Alterar Descricao");
-				System.out.println("3 - Alterar Data Prazo");
-				System.out.println("4 - Remover");
+				System.out.println("3 - Remover");
 				System.out.println("Qualquer caractere - Cancelar Alteracao");
 
 				String opcAlterar = scn.next();
@@ -93,19 +81,21 @@ public class AgendaTarefas {
 				if (opcAlterar.equals("1")) {
 					System.out.println("Novo nome: ");
 					String novoNome = scn.nextLine();
+					novoNome = scn.nextLine();
 					while (novoNome.equals("")) {
 						System.out.println("O nome nao pode ser vazio");
-						System.out.println("Nome: ");
+						System.out.println("Novo Nome: ");
 						novoNome = scn.nextLine();
 					}
 					control.editarTarefa(tarefa, novoNome,
 							tarefa.getDescricao(), tarefa.getDataPrazo());
 				} else if (opcAlterar.equals("2")) {
-					System.out.print("Nova Descricao: ");
-					control.editarTarefa(tarefa, tarefa.getNome(),
-							scn.nextLine(), tarefa.getDataPrazo());
+					System.out.println("Nova Descricao: ");
+					String novaDesc = scn.nextLine();
+					novaDesc = scn.nextLine();
+					control.editarTarefa(tarefa, tarefa.getNome(), novaDesc,
+							tarefa.getDataPrazo());
 				} else if (opcAlterar.equals("3")) {
-				} else if (opcAlterar.equals("4")) {
 					control.removerTarefa(tarefa);
 				}
 
@@ -155,11 +145,7 @@ public class AgendaTarefas {
 	}
 
 	private static void ordenar(Controlador control, String ordem) {
-		if (ordem.equals("criacao")) {
-			control.ordenarDataCriacao();
-		} else if (ordem.equals("prazo")) {
-			control.ordenarDataPrazo();
-		}
+		control.ordenarDataCriacao();
 	}
 
 	private static void cadastrarTarefa(Scanner scn, Controlador control) {
@@ -176,8 +162,6 @@ public class AgendaTarefas {
 		}
 		System.out.println("Descricao: ");
 		descricao = scn.nextLine();
-
-		System.out.println("[[Prazo]]");
 
 		control.criarTarefa(nome, descricao, null);
 	}
