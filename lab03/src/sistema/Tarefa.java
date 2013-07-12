@@ -88,4 +88,14 @@ public class Tarefa implements Comparable<Tarefa> {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		if (dataPrazo == null) {
+			return "Tarefa: " + nome + " - Descricao: " + descricao
+					+ "\nData de Criacao: " + dataCriacao + "\n";
+		}
+		return "Tarefa: " + nome + " - Descrição: " + descricao
+				+ "\nData de Criação: " + dataCriacao + "\nData Prazo: "
+				+ dataPrazo + "\n";
+	}
 }

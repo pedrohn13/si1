@@ -82,6 +82,13 @@
 	</target>
 
 	<!-- ================================= 
+		          target: roda              
+		     ================================= -->
+	<target name="roda" depends="compila">
+		<java classname="view.comando.AgendaTarefas" classpath="bin" />
+	</target>
+
+	<!-- ================================= 
 	          target: deploy              
 	     ================================= -->
 	<target name="deploy" depends="war">
@@ -108,6 +115,9 @@
 		</exec>
 	</target>
 
+	<!-- ================================= 
+		          target: testa      
+		     ================================= -->
 	<target name="testa" depends="compila">
 		<junit printsummary="yes" haltonfailure="no">
 			<formatter type="xml" />
@@ -117,7 +127,7 @@
 				<pathelement location="${build}" />
 			</classpath>
 			<!-- Executa todos os arquivos no formato **/*Test*.class , ou seja, todos os .class com Test no nome-->
-			<batchtest fork="yes" >
+			<batchtest fork="yes">
 				<fileset dir="${build}" includes="**/*Test*.class" />
 			</batchtest>
 		</junit>

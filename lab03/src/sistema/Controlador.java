@@ -10,9 +10,16 @@ public class Controlador {
 	Agenda agenda;
 	List<Tarefa> tarefas;
 
+	@SuppressWarnings("deprecation")
 	public Controlador() {
 		agenda = new Agenda();
 		tarefas = new ArrayList<Tarefa>();
+		agenda.criarTarefa("Tarefa1", "", new Date(114, 0, 1));
+		agenda.criarTarefa("Tarefa2", "", new Date(115, 10, 30));
+		agenda.criarTarefa("Tarefa3", "Descrição da Tarefa",
+				new Date(113, 9, 3));
+		agenda.criarTarefa("Tarefa4", "Descrição", new Date(113, 11, 24));
+		agenda.criarTarefa("Tarefa5", "", new Date(113, 10, 30));
 	}
 
 	public void criarTarefa(String nome, String descricao, Date dataPrazo) {
@@ -23,10 +30,11 @@ public class Controlador {
 		agenda.completarTarefa(tarefa);
 	}
 
-	public void editarTarefa(Tarefa tarefa, String nome, String descricao,  Date dataPrazo) {
-		agenda.editarTarefa(tarefa, nome, descricao,  dataPrazo);
+	public void editarTarefa(Tarefa tarefa, String nome, String descricao,
+			Date dataPrazo) {
+		agenda.editarTarefa(tarefa, nome, descricao, dataPrazo);
 	}
-	
+
 	public void removerTarefa(Tarefa tarefa) {
 		agenda.removerTarefa(tarefa);
 	}
