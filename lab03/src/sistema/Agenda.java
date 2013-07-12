@@ -33,7 +33,11 @@ public class Agenda {
 			Tarefa estaTarefa = buscarTarefa(tarefa);
 			estaTarefa.setNome(nome);
 			estaTarefa.setDescricao(descricao);
-			estaTarefa.setDataPrazo(dataPrazo);
+			if (dataPrazo == null) {
+				estaTarefa.setDataPrazo(dataPrazo);
+			} else if (estaTarefa.getDataCriacao().before(dataPrazo)) {
+				estaTarefa.setDataPrazo(dataPrazo);
+			}
 		} catch (NullPointerException e) {
 			System.out.println("TAREFA NÃO EXISTE");
 		}

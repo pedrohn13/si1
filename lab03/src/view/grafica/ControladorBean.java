@@ -25,7 +25,7 @@ public class ControladorBean {
 	String ordem = "criacao";
 
 	Tarefa tarefaSelecionada;
-	
+
 	public String criarTarefa() {
 		return "criarTarefa";
 	}
